@@ -3,10 +3,10 @@ NB: Progetto iniziato e completato prima dell'aggiornamento apportato alle lezio
 Information Architecture del sito web:
 
 Homepage: 
-Portfolio
-Chi sono
-Dicono di me
-Contattami 
+Portfolio,
+Chi sono,
+Dicono di me,
+Contattami. 
 
 Pagina Portfolio: 
 Progetto Jojob
