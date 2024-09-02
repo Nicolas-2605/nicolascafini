@@ -948,7 +948,7 @@ textarea {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 35px 35px;
+    justify-content: center;
   }
 
   .menuPage {
