@@ -2,9 +2,9 @@
 
 Inseriti tag Opengraph, 
 
-tag meta robot, 
+Inserito tag meta robot, 
 
-tag h1, 
+Inserito tag h1, 
 
 form funzionante, 
 
