@@ -1,6 +1,14 @@
-03/09/2024 - Effettuati update come da feedback ricevuti. 
+03/09/2024 - Effettuati update come da feedback ricevuti:
 
-Inseriti tag Opengraph, tag meta robot, tag h1, form funzionante, cartelle git riordinate.
+Inseriti tag Opengraph, 
+
+tag meta robot, 
+
+tag h1, 
+
+form funzionante, 
+
+cartelle git riordinate.
 
 NB: Progetto iniziato e completato prima dell'aggiornamento apportato alle lezioni e requisiti progetto del corso di HTML e CSS.
 
