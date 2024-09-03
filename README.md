@@ -1,4 +1,4 @@
-03/09/2024 - Effettuati update come da feedback ricevuto.
+03/09/2024 - Effettuati update come da feedback ricevuti.
 
 NB: Progetto iniziato e completato prima dell'aggiornamento apportato alle lezioni e requisiti progetto del corso di HTML e CSS.
 
