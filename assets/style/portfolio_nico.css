@@ -124,7 +124,7 @@ body {
   font-family: BebasNeue-Regular;
   font-size: 108px;
   margin-bottom: 10px;
-  margin-top: -80px;
+  margin-top: -70px;
 }
 
 .font_miniNicolas {
@@ -804,7 +804,7 @@ textarea {
   }
 
   .titleNicolas .fontNicolas {
-    margin-top: -50px;
+    margin-top: -30px;
     text-align: 200px;
     font-size: 48px;
   }
@@ -1098,7 +1098,7 @@ textarea {
   }
 
   .titleNicolas .fontNicolas {
-    margin-top: -50px;
+    margin-top: -30px;
     text-align: 200px;
     font-size: 48px;
   }
