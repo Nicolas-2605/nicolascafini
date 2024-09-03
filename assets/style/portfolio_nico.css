@@ -9,14 +9,14 @@
 
 @font-face {
   font-family: 'Montserrat-Bold';
-  src: url('../main/assets/Montserrat-Bold.ttf') format('truetype');
+  src: url('../Montserrat-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Montserrat-Regular';
-  src: url('../main/assets/Montserrat-Regular.ttf') format('truetype');
+  src: url('../Montserrat-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
