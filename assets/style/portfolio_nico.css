@@ -1,8 +1,8 @@
 
 @font-face {
   font-family: 'BebasNeue-Regular';
-  src: url('../assets/BebasNeue-Regular.woff2') format('woff2'),
-    url('../assets/BebasNeue-Regular.woff') format('woff');
+  src: url('/assets/BebasNeue-Regular.woff2') format('woff2'),
+    url('/assets/BebasNeue-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
