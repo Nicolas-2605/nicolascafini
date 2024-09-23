@@ -342,16 +342,22 @@ body {
 .carousel-inner {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  user-select: none;
+  will-change: transform;
+  user-select: none; 
+  cursor: grab;
 }
 
 .carousel-item {
   min-width: 100%;
   box-sizing: border-box;
-  margin: auto 60px auto auto;
+  justify-content: center;
+  align-items: center;
 
 }
+.carousel-inner:active {
+  cursor: grabbing;
 
+}
 .card {
   font-family: Montserrat;
   background-color: #0b3c4e;
@@ -379,9 +385,7 @@ body {
   cursor: pointer;
 }
 
-.dot:hover,
-.dot:focus,
-.dot:active {
+.dot.active {
   background: #330110;
 }
 
@@ -647,9 +651,9 @@ textarea {
 
   .carousel-item {
     box-sizing: border-box;
-    margin: auto 65px auto auto;
     border-radius: 24px;
-
+    justify-content: center;
+    align-items: center; 
   }
 
   .form-container {
@@ -987,7 +991,8 @@ textarea {
 
   .carousel-item {
     min-width: 100%;
-    margin: auto 40px auto auto;
+    justify-content: center; 
+    align-items: center;
   }
 
   .carousel {
@@ -1280,7 +1285,8 @@ textarea {
 
   .carousel-item {
     min-width: 100%;
-    margin: auto 40px auto auto;
+    justify-content: center; 
+    align-items: center; 
   }
 
   .carousel {
