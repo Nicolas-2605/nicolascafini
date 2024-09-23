@@ -46,28 +46,101 @@ document.getElementById('contact-form').addEventListener('submit', function(even
 });
 
 
-//Recensioni click dot
-let slideIndex = 1;
-showSlides(slideIndex);
+let slideIndex = 0;  // Inizia dalla prima slide
+const slides = document.querySelectorAll(".carousel-item");
+const dots = document.querySelectorAll(".dot");
+const carouselInner = document.querySelector(".carousel-inner");
 
-// Cambia la scheda corrente quando clicchi su un puntino
+// Mostra la slide corrispondente e aggiorna i puntini
+function showSlide(index) {
+    if (index >= slides.length) slideIndex = 0;  // Se supera l'ultima slide, torna alla prima
+    if (index < 0) slideIndex = slides.length - 1;  // Se è inferiore alla prima slide, torna all'ultima
+    carouselInner.style.transform = `translateX(-${slideIndex * 100}%)`;  // Sposta il carosello
+    
+    // Aggiorna i puntini attivi
+    updateDots();
+}
+
+// Funzione per spostarsi alla prossima slide
+function nextSlide() {
+    showSlide(slideIndex += 1);
+}
+
+// Funzione per tornare alla slide precedente
+function prevSlide() {
+    showSlide(slideIndex -= 1);
+}
+
+// Aggiorna lo stato dei puntini attivi
+function updateDots() {
+    dots.forEach((dot, i) => {
+        dot.classList.remove("active");
+        if (i === slideIndex) {
+            dot.classList.add("active");  // Aggiungi la classe "active" al puntino corrente
+        }
+    });
+}
+
+// Funzione per navigare alla slide cliccando sul puntino
 function currentSlide(n) {
-    showSlides(slideIndex = n);
+    showSlide(slideIndex = n - 1);
 }
 
-// Mostra la scheda corrispondente e attiva il puntino associato
-function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("carousel-item");
-    let dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {slideIndex = 1} // Se supera il numero di schede, torna alla prima
-    if (n < 1) {slideIndex = slides.length} // Se è inferiore a 1, vai all'ultima scheda
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  // Nascondi tutte le schede
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", ""); // Rimuovi la classe attiva da tutti i puntini
-    }
-    slides[slideIndex-1].style.display = "block";  // Mostra la scheda corrente
-    dots[slideIndex-1].className += " active"; // Aggiungi la classe attiva al puntino corrente
+// Gestione del "swipe" e "drag" per dispositivi touch e mouse
+function handleTouchStart(event) {
+    startX = event.touches[0].clientX;
+    isDragging = true;
 }
+
+function handleTouchMove(event) {
+    if (!isDragging) return;
+    endX = event.touches[0].clientX;
+}
+
+function handleTouchEnd() {
+    if (!isDragging) return;
+    const diffX = startX - endX;
+
+    if (diffX > 50) { // Swipe sinistra (prossima slide)
+        nextSlide();
+    } else if (diffX < -50) { // Swipe destra (slide precedente)
+        prevSlide();
+    }
+
+    isDragging = false;
+}
+
+function handleMouseDown(event) {
+    startX = event.clientX;
+    isDragging = true;
+}
+
+function handleMouseMove(event) {
+    if (!isDragging) return;
+    endX = event.clientX;
+}
+
+function handleMouseUp() {
+    if (!isDragging) return;
+    const diffX = startX - endX;
+
+    if (diffX > 50) { // Trascinamento verso sinistra (prossima slide)
+        nextSlide();
+    } else if (diffX < -50) { // Trascinamento verso destra (slide precedente)
+        prevSlide();
+    }
+
+    isDragging = false;
+}
+
+// Aggiungi event listener per il touch e il mouse
+carouselInner.addEventListener('touchstart', handleTouchStart);
+carouselInner.addEventListener('touchmove', handleTouchMove);
+carouselInner.addEventListener('touchend', handleTouchEnd);
+
+carouselInner.addEventListener('mousedown', handleMouseDown);
+carouselInner.addEventListener('mousemove', handleMouseMove);
+carouselInner.addEventListener('mouseup', handleMouseUp);
+
+// Imposta la prima slide inizialmente
+showSlide(slideIndex);
