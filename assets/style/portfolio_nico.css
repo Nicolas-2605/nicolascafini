@@ -526,7 +526,17 @@ textarea {
     flex-shrink: 0;
 
   }
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+  user-select: none; 
+  cursor: grab;
+}
+.carousel-inner:active {
+  cursor: grabbing;
 
+}
   .Footer-cv {
     color: #FFF;
     font-family: Montserrat;
