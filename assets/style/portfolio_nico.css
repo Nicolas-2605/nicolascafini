@@ -337,7 +337,6 @@ body {
   position: relative;
   width: 100%;
   overflow: hidden;
-  cursor: grab;
 }
 
 .carousel-inner {
@@ -388,10 +387,6 @@ body {
 
 h2 {
   color: #ffffff;
-}
-
-.carousel.grabbing {
-  cursor: grabbing;
 }
 
 .form-container {
