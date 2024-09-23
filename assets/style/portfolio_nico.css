@@ -526,6 +526,12 @@ textarea {
     flex-shrink: 0;
 
   }
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
 .carousel-inner {
   display: flex;
   transition: transform 0.5s ease-in-out;
@@ -533,10 +539,26 @@ textarea {
   user-select: none; 
   cursor: grab;
 }
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+
+}
 .carousel-inner:active {
   cursor: grabbing;
 
 }
+  .card {
+    width: 90%;
+    padding: 15px;
+    border-radius: 24px;
+
+  }
+
+
   .Footer-cv {
     color: #FFF;
     font-family: Montserrat;
@@ -638,6 +660,27 @@ textarea {
     text-align: center;
     margin: 0 20px;
   }
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+  user-select: none; 
+  cursor: grab;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+
+}
 }
 
 @media (max-width: 1000px) {
@@ -654,17 +697,33 @@ textarea {
 
 
   .card {
-    width: 80%;
-
-
-  }
-
-  .carousel-item {
-    box-sizing: border-box;
+    width: 90%;
+    padding: 15px;
     border-radius: 24px;
-    justify-content: center;
-    align-items: center; 
+
   }
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+  user-select: none; 
+  cursor: grab;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+
+}
 
   .form-container {
     padding: 20px;
