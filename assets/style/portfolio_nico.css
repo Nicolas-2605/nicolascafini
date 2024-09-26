@@ -1050,7 +1050,9 @@ textarea {
     align-items: flex-start;
     margin: auto;
   }
-
+.form-container {
+    padding: 20px;
+  }
   .Footer-name {
     color: #ffffff;
     font-family: Montserrat;
