@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'BebasNeue-Regular';
-  src: url('../BebasNeue-Regular.woff2') format('woff2');
-    url('../BebasNeue-Regular.woff') format('woff');
+  src: url('../BebasNeue-Regular.woff2') format('woff2'),
+       url('../BebasNeue-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -342,16 +342,19 @@ body {
   display: flex;
   transition: transform 0.5s ease-in-out;
   will-change: transform;
-  user-select: none; 
+  touch-action: pan-y; /* Consente solo lo swipe orizzontale */
+  -webkit-overflow-scrolling: touch; /* Migliora lo scrolling su Safari */
   cursor: grab;
 }
 
 .carousel-item {
   min-width: 100%;
+  height: auto; 
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-
+  padding: 0 20px; /* Aggiunge spazio orizzontale tra le slide */
+ 
 }
 .carousel-inner:active {
   cursor: grabbing;
@@ -363,7 +366,8 @@ body {
   padding: 20px;
   border-radius: 24px;
   color: #fff;
-  width: 650px;
+  width: 90%; 
+  max-width: 600px; 
   margin: 0 auto;
   text-align: left;
 }
@@ -510,6 +514,40 @@ textarea {
   font-weight: 400;
   line-height: 120%;
 }
+.spinner {
+  display: none; /* Rimane nascosto inizialmente */
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px; /* Spazio tra lo spinner e il pulsante */
+  text-align: center; /* Centra il contenuto */
+}
+
+/* Stile per l'animazione dello spinner */
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #0b3c4e;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: auto; /* Aggiunge il centraggio automatico */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#confirmation-message {
+  font-size: 16px;
+  color: green; /* Verde per il successo */
+  font-family: Montserrat-Bold;
+}
+
+#confirmation-message.error {
+  font-size: 16px;
+  color: red; /* Rosso per l'errore */
+  font-family: Montserrat-Bold;
+}
 
 
 @media (min-width: 620px) and (max-width: 899px) {
@@ -525,38 +563,6 @@ textarea {
     flex-shrink: 0;
 
   }
-.carousel {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-.carousel-inner {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  will-change: transform;
-  user-select: none; 
-  cursor: grab;
-}
-
-.carousel-item {
-  min-width: 100%;
-  box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
-
-}
-.carousel-inner:active {
-  cursor: grabbing;
-
-}
-  .card {
-    width: 90%;
-    padding: 15px;
-    border-radius: 24px;
-
-  }
-
 
   .Footer-cv {
     color: #FFF;
@@ -567,6 +573,17 @@ textarea {
     line-height: 120%;
     text-decoration: none;
 
+  }
+  #confirmation-message {
+    font-size: 12px;
+    color: green; /* Verde per il successo */
+    font-family: Montserrat-Bold;
+  }
+  
+  #confirmation-message.error {
+    font-size: 12px;
+    color: red; /* Rosso per l'errore */
+    font-family: Montserrat-Bold;
   }
 }
 
@@ -659,27 +676,6 @@ textarea {
     text-align: center;
     margin: 0 20px;
   }
-.carousel {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-.carousel-inner {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  will-change: transform;
-  user-select: none; 
-  cursor: grab;
-}
-
-.carousel-item {
-  min-width: 100%;
-  box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
-
-}
 }
 
 @media (max-width: 1000px) {
@@ -696,37 +692,12 @@ textarea {
 
 
   .card {
-    width: 90%;
-    padding: 15px;
-    border-radius: 24px;
+    width: 80%;
+
 
   }
 
-.carousel {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
 
-.carousel-inner {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  will-change: transform;
-  user-select: none; 
-  cursor: grab;
-}
-
-.carousel-item {
-  min-width: 100%;
-  box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
-
-}
-
-  .form-container {
-    padding: 20px;
-  }
 
   form {
     flex-direction: column;
@@ -1057,16 +1028,7 @@ textarea {
 
   }
 
-  .carousel-item {
-    min-width: 100%;
-    justify-content: center; 
-    align-items: center;
-  }
 
-  .carousel {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
 
 }
 
