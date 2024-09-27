@@ -69,20 +69,20 @@ let slideIndex = 0;  // Inizia dalla prima slide
 const slides = document.querySelectorAll(".carousel-item");
 const dots = document.querySelectorAll(".dot");
 const carouselInner = document.querySelector(".carousel-inner");
-
+let isDragging = false;
 let startX = 0;
 let endX = 0;
-let isDragging = false;
-const SWIPE_THRESHOLD = 30; // Soglia per il riconoscimento del swipe
+const SWIPE_THRESHOLD = 30; // Soglia per il riconoscimento dello swipe
 
-// Mostra la slide corrispondente e aggiorna i puntini
+// Funzione per mostrare la slide corrispondente e aggiornare i puntini
 function showSlide(index) {
     if (index >= slides.length) slideIndex = 0;  // Se supera l'ultima slide, torna alla prima
     if (index < 0) slideIndex = slides.length - 1;  // Se è inferiore alla prima slide, torna all'ultima
-    carouselInner.style.transform = `translateX(-${slideIndex * 100}%)`;  // Sposta il carosello
     
-    // Aggiorna i puntini attivi
-    updateDots();
+    const slideWidth = slides[0].clientWidth;  // Usa la larghezza della slide in pixel
+    carouselInner.style.transform = `translateX(-${slideIndex * slideWidth}px)`;  // Movimento basato sui pixel
+
+    updateDots();  // Aggiorna i puntini
 }
 
 // Funzione per spostarsi alla prossima slide
@@ -95,7 +95,7 @@ function prevSlide() {
     showSlide(slideIndex -= 1);
 }
 
-// Aggiorna lo stato dei puntini attivi
+// Funzione per aggiornare lo stato dei puntini attivi
 function updateDots() {
     dots.forEach((dot, i) => {
         dot.classList.remove("active");
@@ -110,7 +110,7 @@ function currentSlide(n) {
     showSlide(slideIndex = n - 1);
 }
 
-// Gestione del "swipe" e "drag" per dispositivi touch e mouse
+// Gestione del "swipe" e "drag" per dispositivi touch
 function handleTouchStart(event) {
     startX = event.touches[0].clientX;
     isDragging = true;
@@ -118,10 +118,8 @@ function handleTouchStart(event) {
 
 function handleTouchMove(event) {
     if (!isDragging) return;
+    event.preventDefault();  // Previene lo scroll durante il tocco
     endX = event.touches[0].clientX;
-
-    // Prevenire lo scroll verticale durante lo swipe orizzontale
-    event.preventDefault(); // Aggiunta per prevenire il comportamento di scroll verticale
 }
 
 function handleTouchEnd() {
@@ -134,52 +132,45 @@ function handleTouchEnd() {
         prevSlide();
     }
 
-    // Resetta il flag di dragging e le variabili
     isDragging = false;
-    startX = 0;
-    endX = 0;
 }
 
-function handleTouchCancel() {
-    isDragging = false; // Resetta il flag se il tocco viene cancellato
-}
+// Gestione del drag con il mouse (disabilitato temporaneamente per test su Safari)
+// function handleMouseDown(event) {
+//     startX = event.clientX;
+//     isDragging = true;
+// }
 
-// Gestione drag per il mouse
-function handleMouseDown(event) {
-    startX = event.clientX;
-    isDragging = true;
-}
+// function handleMouseMove(event) {
+//     if (!isDragging) return;
+//     endX = event.clientX;
+// }
 
-function handleMouseMove(event) {
-    if (!isDragging) return;
-    endX = event.clientX;
-}
+// function handleMouseUp() {
+//     if (!isDragging) return;
+//     const diffX = startX - endX;
 
-function handleMouseUp() {
-    if (!isDragging) return;
-    const diffX = startX - endX;
+//     if (diffX > SWIPE_THRESHOLD) { // Trascinamento verso sinistra (prossima slide)
+//         nextSlide();
+//     } else if (diffX < -SWIPE_THRESHOLD) { // Trascinamento verso destra (slide precedente)
+//         prevSlide();
+//     }
 
-    if (diffX > SWIPE_THRESHOLD) { // Trascinamento verso sinistra (prossima slide)
-        nextSlide();
-    } else if (diffX < -SWIPE_THRESHOLD) { // Trascinamento verso destra (slide precedente)
-        prevSlide();
-    }
-
-    // Resetta il flag di dragging
-    isDragging = false;
-    startX = 0;
-    endX = 0;
-}
+//     isDragging = false;
+// }
 
 // Aggiungi event listener per il touch e il mouse
 carouselInner.addEventListener('touchstart', handleTouchStart);
 carouselInner.addEventListener('touchmove', handleTouchMove);
 carouselInner.addEventListener('touchend', handleTouchEnd);
-carouselInner.addEventListener('touchcancel', handleTouchCancel); // Aggiunto l'evento touchcancel
 
-carouselInner.addEventListener('mousedown', handleMouseDown);
-carouselInner.addEventListener('mousemove', handleMouseMove);
-carouselInner.addEventListener('mouseup', handleMouseUp);
+// Rimuovi la gestione del mouse temporaneamente per i test
+// carouselInner.addEventListener('mousedown', handleMouseDown);
+// carouselInner.addEventListener('mousemove', handleMouseMove);
+// carouselInner.addEventListener('mouseup', handleMouseUp);
 
-// Imposta la prima slide inizialmente
-showSlide(slideIndex);
+// Forza il ricalcolo delle dimensioni quando la finestra si carica completamente
+window.addEventListener('load', () => {
+    showSlide(slideIndex);  // Assicura che la prima slide sia visualizzata correttamente
+});
+
