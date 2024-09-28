@@ -135,41 +135,41 @@ function handleTouchEnd() {
     isDragging = false;
 }
 
-// Gestione del drag con il mouse (disabilitato temporaneamente per test su Safari)
-// function handleMouseDown(event) {
-//     startX = event.clientX;
-//     isDragging = true;
-// }
 
-// function handleMouseMove(event) {
-//     if (!isDragging) return;
-//     endX = event.clientX;
-// }
+ function handleMouseDown(event) {
+     startX = event.clientX;
+     isDragging = true;
+ }
 
-// function handleMouseUp() {
-//     if (!isDragging) return;
-//     const diffX = startX - endX;
+ function handleMouseMove(event) {
+     if (!isDragging) return;
+     endX = event.clientX;
+ }
 
-//     if (diffX > SWIPE_THRESHOLD) { // Trascinamento verso sinistra (prossima slide)
-//         nextSlide();
-//     } else if (diffX < -SWIPE_THRESHOLD) { // Trascinamento verso destra (slide precedente)
-//         prevSlide();
-//     }
+ function handleMouseUp() {
+     if (!isDragging) return;
+     const diffX = startX - endX;
 
-//     isDragging = false;
-// }
+     if (diffX > SWIPE_THRESHOLD) { // Trascinamento verso sinistra (prossima slide)
+         nextSlide();
+     } else if (diffX < -SWIPE_THRESHOLD) { // Trascinamento verso destra (slide precedente)
+         prevSlide();
+     }
 
-// Aggiungi event listener per il touch e il mouse
+     isDragging = false;
+ }
+
+
 carouselInner.addEventListener('touchstart', handleTouchStart);
 carouselInner.addEventListener('touchmove', handleTouchMove);
 carouselInner.addEventListener('touchend', handleTouchEnd);
 
-// Rimuovi la gestione del mouse temporaneamente per i test
-// carouselInner.addEventListener('mousedown', handleMouseDown);
-// carouselInner.addEventListener('mousemove', handleMouseMove);
-// carouselInner.addEventListener('mouseup', handleMouseUp);
 
-// Forza il ricalcolo delle dimensioni quando la finestra si carica completamente
+ carouselInner.addEventListener('mousedown', handleMouseDown);
+ carouselInner.addEventListener('mousemove', handleMouseMove);
+ carouselInner.addEventListener('mouseup', handleMouseUp);
+
+
 window.addEventListener('load', () => {
     showSlide(slideIndex);  // Assicura che la prima slide sia visualizzata correttamente
 });
